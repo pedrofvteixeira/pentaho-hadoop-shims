@@ -399,6 +399,8 @@ public class HadoopConfigurationLocator implements HadoopConfigurationProvider {
       // Register native libraries after everything else has been loaded successfully
       registerNativeLibraryPaths( configurationProperties.getProperty( CONFIG_PROPERTY_LIBRARY_PATH ) );
 
+      new HadoopConfigurationUtil().notifyOnConfigurationPrepared( config );
+
       hadoopShim.onLoad( config, fsm );
       return config;
     } catch ( Throwable t ) {
